@@ -113,6 +113,11 @@ Where the brief was specific and the file was silent, I followed the brief: the 
 **booking first, then WhatsApp, then email** (requirement 12), and the FAQ is **five `<details>`**
 (requirement 11) even though the file suggests three one-line answers.
 
+On "write the price once": the file requires the price inside the hero H1 (section 1) and written
+once in the price section (section 5), so the figure `Rs 25,000 a month` appears in exactly those two
+places and nowhere else on the page. The FAQ no longer repeats it. The working photo sits beside the
+"who I am" block at about a third of the content width, as requirement 10 asks.
+
 ## What I would tell the next person
 
 - Open `index.html` in a browser, not the repo, to see the page.
