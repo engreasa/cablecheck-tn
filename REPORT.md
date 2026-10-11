@@ -22,7 +22,8 @@
   `shots/mobile-375-full.png`, all produced by `node /tmp/kc-pupp/shoot.mjs` and opened.
 
 **GitHub repository: DONE**
-  Repository: PUSHED_LINK_HERE
+  Repository: https://github.com/engreasa/cablecheck-tn (public, branch `main`).
+  evidence: `git ls-remote --heads origin` -> `3549b20... refs/heads/main`; `gh api repos/engreasa/cablecheck-tn/contents --jq '.[].name'` -> `REPORT.md WEBSITE-RULES.md WORKLOG.md images index.html picture scripts shots`.
 
 **Deploy to Vercel: NOT STARTED.** The brief asks for the repository only, so the member can import it.
 
