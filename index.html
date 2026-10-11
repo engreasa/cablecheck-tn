@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CableCheck TN | Load and cable size checks, Madurai</title>
+<meta name="description" content="A monthly load and cable size check for small wiring and rooftop solar contractors in Tamil Nadu, served online from Madurai. Rs 25,000 a month.">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --copper:#B87333;
+    --teal:#0F6B6B;
+    --charcoal:#1F2A2E;
+    --cream:#F7F3EC;
+    --nearblack:#141414;
+    --white:#FFFFFF;
+    --h1:clamp(40px, 14px + 4vw, 80px);
+    --h2:clamp(32px, 16px + 2.2vw, 52px);
+    --figure:clamp(64px, 12px + 4vw, 96px);
+    --h3:clamp(22px, 1.2vw + 16px, 28px);
+    --lead:clamp(18px, 0.8vw + 15px, 22px);
+    --body:18px;
+    --label:14px;
+    --pad:96px;
+    --gap:24px;
+    --radius:16px;
+    --wrap:1200px;
+  }
+  @media (max-width:1023px){ :root{ --pad:72px; } }
+  @media (max-width:599px){ :root{ --pad:56px; --gap:16px; } }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    font-family:"DM Sans", system-ui, -apple-system, sans-serif;
+    font-size:var(--body);
+    line-height:1.6;
+    color:var(--nearblack);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3,.fig,.num,.price-fig,.brand-name,.contact-sentence{
+    font-family:"Space Grotesk","DM Sans",system-ui,sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  img{ max-width:100%; display:block; }
+  p{ margin:0 0 1em; }
+  .wrap{ width:min(var(--wrap), 100% - 40px); margin-inline:auto; }
+  .sec{ padding-block:var(--pad); }
+  a{ color:inherit; }
+  :focus-visible{ outline:3px solid var(--nearblack); outline-offset:3px; border-radius:4px; }
+  .on-dark :focus-visible{ outline-color:var(--white); }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; text-align:center;
+    min-height:56px; padding:0 28px; border:2px solid transparent; border-radius:var(--radius);
+    font-family:"DM Sans",system-ui,sans-serif; font-weight:700; font-size:18px; line-height:1;
+    text-decoration:none; cursor:pointer; transition:transform .08s ease;
+  }
+  .btn:active{ transform:translateY(1px); }
+  .btn-dark{ background:var(--nearblack); color:var(--cream); border-color:var(--nearblack); }
+  .btn-white{ background:var(--white); color:var(--nearblack); border-color:var(--white); }
+  .btn-teal{ background:var(--teal); color:var(--white); border-color:var(--teal); }
+  .btn-copper{ background:var(--copper); color:var(--nearblack); border-color:var(--copper); }
+  .btn-sm{ min-height:48px; padding:0 22px; font-size:16px; }
+
+  /* Header */
+  .site-header{ background:var(--cream); border-bottom:1px solid rgba(15,107,107,.18); }
+  .site-header .bar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:12px; }
+  .brand{ display:inline-flex; align-items:center; gap:12px; min-height:44px; text-decoration:none; color:var(--nearblack); }
+  .brand img{ width:40px; height:40px; }
+  .brand-name{ font-size:20px; font-weight:700; }
+
+  /* 1. Hero */
+  .hero{ background:var(--copper); color:var(--nearblack); }
+  .hero-inner{ display:grid; grid-template-columns:55fr 45fr; align-items:stretch; }
+  .hero-copy{
+    display:flex; flex-direction:column; justify-content:center; gap:18px;
+    padding:var(--pad) 40px var(--pad) max(20px, calc((100vw - var(--wrap)) / 2));
+  }
+  .eyebrow{ margin:0; font-size:var(--label); font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  h1{ font-size:var(--h1); line-height:1.05; font-weight:800; margin:0; max-width:15ch; }
+  .lead{ font-size:var(--lead); line-height:1.45; font-weight:500; margin:0; max-width:38ch; }
+  .hero-cta{ margin:8px 0 0; }
+  .hero-media img{ width:100%; height:100%; object-fit:cover; object-position:64% 32%; }
+  @media (min-width:900px){ .hero-inner{ min-height:min(90vh, 860px); } }
+  @media (max-width:899px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-copy{ padding:var(--pad) 20px; }
+    .hero-media{ order:2; }
+    .hero-media img{ height:auto; aspect-ratio:4 / 3; object-position:64% 30%; }
+  }
+
+  /* 2. Proof */
+  .proof{ background:var(--charcoal); color:var(--cream); }
+  .proof h2{ color:var(--white); }
+  h2{ font-size:var(--h2); line-height:1.1; font-weight:800; margin:0 0 20px; max-width:22ch; }
+  .word{ color:var(--copper); }
+  .proof-top{ display:grid; grid-template-columns:1.35fr 1fr; gap:40px; align-items:start; }
+  .who-name{ display:flex; align-items:center; gap:14px; margin:0 0 16px; font-size:20px; font-weight:700; color:var(--white); }
+  .avatar{ width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid var(--copper); }
+  .who p{ max-width:60ch; }
+  .proof-media{ margin:0; align-self:stretch; }
+  .proof-media img{ width:100%; height:100%; min-height:220px; object-fit:cover; border-radius:var(--radius); }
+  .rule{ height:3px; width:56px; background:var(--copper); border:0; margin:36px 0 0; }
+  .figures{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); margin:28px 0 0; }
+  .fig{ display:block; font-size:var(--figure); line-height:1; font-weight:800; color:var(--white); overflow-wrap:anywhere; }
+  .fig-label{ display:block; font-size:16px; font-weight:600; color:var(--cream); margin-top:12px; }
+  .quote{ margin:40px 0 0; font-size:var(--lead); font-weight:500; color:var(--cream); max-width:58ch; }
+  .quote-intro{ display:block; font-size:var(--label); font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--cream); margin-bottom:8px; }
+  @media (max-width:899px){
+    .proof-top{ grid-template-columns:1fr; gap:28px; }
+    .proof-media img{ min-height:0; height:auto; aspect-ratio:16 / 10; }
+  }
+  @media (max-width:799px){ .figures{ grid-template-columns:1fr; gap:32px; } }
+
+  /* 3. What you get */
+  .what{ background:var(--cream); color:var(--nearblack); }
+  .tiles{ display:grid; grid-template-columns:1.1fr 1fr; grid-auto-rows:1fr; gap:var(--gap); margin-top:36px; }
+  .tile{ background:var(--white); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; }
+  .tile-tall{ grid-row:span 2; }
+  .tile img{ width:100%; height:100%; object-fit:cover; }
+  .tile-tall img{ min-height:320px; }
+  .tile-body{ padding:28px; }
+  .tile .icon{ display:inline-flex; color:var(--teal); margin-bottom:16px; }
+  .icon svg{ width:26px; height:26px; display:block; }
+  h3{ font-size:var(--h3); line-height:1.2; font-weight:700; margin:0 0 10px; }
+  .tile-body p{ margin:0; max-width:46ch; }
+  .tile-panel{ background:var(--teal); color:var(--white); }
+  .tile-panel .icon{ color:var(--white); }
+  @media (max-width:799px){
+    .tiles{ grid-template-columns:1fr; }
+    .tile-tall{ grid-row:auto; }
+    .tile img{ height:auto; aspect-ratio:16 / 10; }
+    .tile-tall img{ min-height:0; }
+  }
+
+  /* 4. How it works */
+  .how{ background:var(--teal); color:var(--white); }
+  .how h2{ color:var(--white); }
+  .how-grid{ display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center; }
+  .steps{ list-style:none; margin:28px 0 0; padding:0; display:grid; gap:30px; }
+  .step{ display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:baseline; }
+  .num{ font-size:var(--figure); line-height:1; font-weight:800; color:var(--white); }
+  .step h3{ color:var(--white); }
+  .step p{ color:var(--cream); margin:0; max-width:48ch; }
+  .how-media{ margin:0; }
+  .how-media img{ width:100%; height:auto; border-radius:var(--radius); }
+  @media (max-width:899px){ .how-grid{ grid-template-columns:1fr; gap:32px; } .step{ gap:16px; } }
+
+  /* 5. Price or enquiry */
+  .price{ background:var(--nearblack); color:var(--cream); }
+  .price h2{ color:var(--white); }
+  .price-fig{ font-family:"Space Grotesk",sans-serif; font-size:var(--figure); line-height:1; font-weight:800; margin:8px 0 20px; color:var(--copper); }
+  .price-fig .per{ font-size:calc(var(--figure) * .34); font-weight:700; color:var(--cream); }
+  .price-intro{ color:var(--cream); max-width:62ch; }
+  .price-cta{ margin:28px 0 0; }
+  .faq{ margin-top:40px; border-top:1px solid rgba(247,243,236,.28); }
+  .faq details{ border-bottom:1px solid rgba(247,243,236,.28); padding:18px 0; }
+  .faq summary{
+    cursor:pointer; list-style:none; font-weight:700; font-size:18px; color:var(--white);
+    display:flex; gap:12px; align-items:flex-start; min-height:44px; padding-block:8px;
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::before{ content:"+"; color:var(--copper); font-weight:800; font-family:"Space Grotesk",sans-serif; }
+  .faq details[open] summary::before{ content:"-"; }
+  .faq p{ margin:12px 0 0 28px; color:var(--cream); max-width:62ch; }
+
+  /* 6. Contact */
+  .contact{ background:var(--copper); color:var(--nearblack); }
+  .contact-sentence{ font-size:clamp(36px, 18px + 2.4vw, 52px); line-height:1.1; font-weight:800; margin:0 0 18px; max-width:20ch; }
+  .contact-copy{ max-width:52ch; }
+  .contact-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-top:30px; }
+
+  /* 7. Footer */
+  .footer{ background:var(--charcoal); color:var(--cream); }
+  .footer .wrap{ display:flex; flex-direction:column; gap:24px; }
+  .footer-top{ display:flex; flex-wrap:wrap; gap:24px 40px; align-items:center; justify-content:space-between; }
+  .footer-brand{ display:flex; align-items:center; gap:12px; min-height:44px; text-decoration:none; color:var(--white); }
+  .footer-brand img{ width:40px; height:40px; }
+  .footer-brand span{ font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:20px; }
+  .footer-contact{ display:flex; flex-wrap:wrap; gap:8px 28px; }
+  .footer-contact a{ color:var(--cream); text-decoration:none; display:inline-flex; align-items:center; min-height:44px; }
+  .footer-contact a:hover{ text-decoration:underline; }
+  .credit{ margin:0; font-size:var(--label); line-height:1.5; color:var(--cream); }
+
+  /* Mobile WhatsApp bar */
+  .wa-bar{ display:none; }
+  @media (max-width:699px){
+    .site-header .bar .btn{ display:none; }
+    body{ padding-bottom:72px; }
+    .wa-bar{
+      display:flex; position:fixed; left:0; right:0; bottom:0; z-index:50;
+      height:56px; padding:0 10px; align-items:center; justify-content:center;
+      background:var(--nearblack); box-shadow:0 -2px 10px rgba(0,0,0,.3);
+    }
+    .wa-bar .btn{ width:100%; min-height:44px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .sec{ animation:rise .5s ease both; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="CableCheck TN, back to the top">
+      <img src="images/logo.png" width="40" height="40" alt="CableCheck TN emblem, a circular badge with a solar panel and a copper cable end">
+      <span class="brand-name">CableCheck TN</span>
+    </a>
+    <a class="btn btn-teal btn-sm" href="https://cal.com/ayyub59/20-min-ai-business-discovery-call-with-ayyub">Book a 20 minute call</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <section class="hero sec" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Madurai, Tamil Nadu</p>
+        <h1 id="hero-title">Right cable and load sizes, Rs 25,000 a month</h1>
+        <p class="lead">For small wiring and rooftop solar contractors in Tamil Nadu who still pick cable, MCB and inverter size by eye.</p>
+        <p class="hero-cta"><a class="btn btn-dark" href="https://cal.com/ayyub59/20-min-ai-business-discovery-call-with-ayyub">Book a 20 minute call</a></p>
+      </div>
+      <div class="hero-media">
+        <img src="images/speaking.jpg" width="606" height="306" alt="Ayyub Khan M speaking at a desk beside a screen showing the CableCheck TN emblem, with coils of cable behind him" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Proof -->
+  <section class="proof sec on-dark" aria-labelledby="proof-title">
+    <div class="wrap">
+      <div class="proof-top">
+        <div class="who">
+          <h2 id="proof-title">Who I am</h2>
+          <p class="who-name">
+            <img class="avatar" src="images/portrait-formal.jpg" width="450" height="450" alt="Ayyub Khan M in a jacket and tie">
+            <span>Ayyub Khan M</span>
+          </p>
+          <p>I run CableCheck TN from Madurai. I work with small wiring and rooftop solar contractors across Tamil Nadu, where a cable, an MCB or an inverter is often picked by eye. Jobs overrun on copper, or fail on voltage drop, and the contractor pays for it. I started this so the monthly check a contractor needs is one I can stand behind.</p>
+        </div>
+        <figure class="proof-media">
+          <img src="images/work-laptop.jpg" width="606" height="314" loading="lazy" alt="Ayyub Khan M at a laptop showing a site load and cable register, among coils of cable and boxes of MCBs">
+        </figure>
+      </div>
+      <hr class="rule">
+      <div class="figures">
+        <div class="figure-item">
+          <span class="fig">[YOUR RESULT]</span>
+          <span class="fig-label">Years in the work</span>
+        </div>
+        <div class="figure-item">
+          <span class="fig">[YOUR RESULT]</span>
+          <span class="fig-label">What I have built</span>
+        </div>
+        <div class="figure-item">
+          <span class="fig">[YOUR RESULT]</span>
+          <span class="fig-label">Who I work with</span>
+        </div>
+      </div>
+      <p class="quote"><span class="quote-intro">What a contractor says</span>[CLIENT QUOTE]</p>
+    </div>
+  </section>
+
+  <!-- 3. What you get -->
+  <section class="what sec" aria-labelledby="what-title">
+    <div class="wrap">
+      <h2 id="what-title">What you <span class="word">get</span></h2>
+      <div class="tiles">
+        <article class="tile tile-tall">
+          <img src="images/work-desk.jpg" width="1024" height="1024" loading="lazy" alt="A contractor site office desk with an open register, a laptop and coils of copper cable">
+          <div class="tile-body">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v5M15 3v5"/><path d="M6 8h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6z"/><path d="M12 17v4"/></svg>
+            </span>
+            <h3>Load and cable size check</h3>
+            <p>Send the appliance list, the phase and the run lengths. You get the cable size, the MCB and the earth wire back.</p>
+          </div>
+        </article>
+        <article class="tile tile-panel">
+          <div class="tile-body">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg>
+            </span>
+            <h3>Site load and cable register</h3>
+            <p>A living register of every site, its load and the cable size you chose.</p>
+          </div>
+        </article>
+        <article class="tile tile-panel">
+          <div class="tile-body">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            </span>
+            <h3>Monday rates and solar policy digest</h3>
+            <p>Monday rates and solar policy changes, read and ready for you.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. How it works -->
+  <section class="how sec on-dark" aria-labelledby="how-title">
+    <div class="wrap how-grid">
+      <div>
+        <h2 id="how-title">How it works</h2>
+        <ol class="steps">
+          <li class="step">
+            <span class="num">01</span>
+            <div>
+              <h3>You send the details</h3>
+              <p>The appliance list, the phase and the run lengths for the site.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="num">02</span>
+            <div>
+              <h3>I send the sizes back</h3>
+              <p>The cable size, the MCB, the earth wire and a filled sheet.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="num">03</span>
+            <div>
+              <h3>Your electricians learn</h3>
+              <p>Short recorded lessons for their electricians run on LinkedIn.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <figure class="how-media">
+        <img src="images/portrait-teal.jpg" width="482" height="516" loading="lazy" alt="Ayyub Khan M against a deep teal background">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 5. Price or enquiry -->
+  <section class="price sec on-dark" aria-labelledby="price-title">
+    <div class="wrap">
+      <h2 id="price-title">One price, <span class="word">everything</span> included</h2>
+      <p class="price-fig">Rs 25,000 <span class="per">a month</span></p>
+      <p class="price-intro">One price covers everything the three services do: the load and cable size check, the site load and cable register, and the Monday rates and solar policy digest.</p>
+      <p class="price-cta"><a class="btn btn-copper" href="https://wa.me/916380838889?text=Hello%20CableCheck%20TN%2C%20I%20would%20like%20a%20load%20and%20cable%20size%20check">Message me on WhatsApp</a></p>
+      <div class="faq">
+        <details>
+          <summary>What do you need from me to size a cable?</summary>
+          <p>The appliance list or the load, whether the supply is single phase or three phase, and the run lengths to each point.</p>
+        </details>
+        <details>
+          <summary>What comes back to me?</summary>
+          <p>The cable size, the MCB rating, the earth wire size, and a filled sheet for the site.</p>
+        </details>
+        <details>
+          <summary>Does this cover rooftop solar?</summary>
+          <p>Yes. The same monthly check covers rooftop solar loads and inverter sizing, not wiring alone.</p>
+        </details>
+        <details>
+          <summary>How often does the check run?</summary>
+          <p>Every month. That is what the Rs 25,000 a month covers.</p>
+        </details>
+        <details>
+          <summary>Who is this for?</summary>
+          <p>Small wiring and rooftop solar contractors in Tamil Nadu.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Contact -->
+  <section class="contact sec" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 class="contact-sentence" id="contact-title">One monthly check keeps your cable sizes right.</h2>
+      <p class="contact-copy">Booking, WhatsApp and email all reach me directly. Start with a call, or send a message and I will take it from there.</p>
+      <div class="contact-actions">
+        <a class="btn btn-dark" href="https://cal.com/ayyub59/20-min-ai-business-discovery-call-with-ayyub">Book a 20 minute call</a>
+        <a class="btn btn-white" href="https://wa.me/916380838889?text=Hello%20CableCheck%20TN%2C%20I%20would%20like%20a%20load%20and%20cable%20size%20check">Message me on WhatsApp</a>
+        <a class="btn btn-teal" href="mailto:easa59@gmail.com?subject=CableCheck%20TN%20enquiry">Email me</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 7. Footer -->
+<footer class="footer sec on-dark">
+  <div class="wrap">
+    <div class="footer-top">
+      <a class="footer-brand" href="#top">
+        <img src="images/logo-dark.png" width="40" height="40" alt="CableCheck TN emblem">
+        <span>CableCheck TN</span>
+      </a>
+      <nav class="footer-contact" aria-label="Contact">
+        <a href="https://wa.me/916380838889?text=Hello%20CableCheck%20TN%2C%20I%20would%20like%20a%20load%20and%20cable%20size%20check">Message me on WhatsApp</a>
+        <a href="mailto:easa59@gmail.com?subject=CableCheck%20TN%20enquiry">Email me</a>
+        <a href="https://cal.com/ayyub59/20-min-ai-business-discovery-call-with-ayyub">Book a 20 minute call</a>
+      </nav>
+    </div>
+    <p class="credit">CableCheck TN, Madurai, Tamil Nadu. Photos by CableCheck TN.</p>
+  </div>
+</footer>
+
+<div class="wa-bar">
+  <a class="btn btn-white" href="https://wa.me/916380838889?text=Hello%20CableCheck%20TN%2C%20I%20would%20like%20a%20load%20and%20cable%20size%20check">Message me on WhatsApp</a>
+</div>
+
+</body>
+</html>
